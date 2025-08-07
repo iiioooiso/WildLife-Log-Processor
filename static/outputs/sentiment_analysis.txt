@@ -1,0 +1,26 @@
+=== SENTIMENT ANALYSIS ===
+
+Log: Sarah Mitchell: Spotted a red fox near Pine Ridge Trail at sunrise.
+Sentiment: POSITIVE (0.70)
+Emotion: fear (0.96)
+
+Log: James Patel: Observed a group of deer grazing in the North Lake Clearing.
+Sentiment: NEGATIVE (0.88)
+Emotion: fear (0.93)
+
+Log: Lisa Gomez: Saw a great horned owl perched in Oakwood Forest.
+Sentiment: POSITIVE (0.92)
+Emotion: fear (0.86)
+
+Log: Alex Chen: Noted a black bear wandering along Riverbend Valley.
+Sentiment: POSITIVE (0.85)
+Emotion: fear (0.72)
+
+Log: Emma Brooks: Watched a bald eagle circling above Rocky Bluff Point.
+Sentiment: POSITIVE (0.93)
+Emotion: fear (0.91)
+
+Log: Noah Jackson: Caught a raccoon rummaging near Campsite .
+Sentiment: NEGATIVE (0.99)
+Emotion: fear (0.95)
+

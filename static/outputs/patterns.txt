@@ -1,0 +1,26 @@
+=== PATTERN DETECTION ===
+
+Topic Modeling Results:
+Topic 0: lake, lisa, gomez, forest, great, horned, oakwood, saw, perched, owl
+Topic 1: chen, riverbend, black, campsite, jackson, caught, rummaging, noah, raccoon, near
+Topic 2: sunrise, alex, black, chen, along, bear, noted, riverbend, valley, wandering
+Topic 3: chen, riverbend, black, campsite, jackson, caught, rummaging, noah, raccoon, near
+Topic 4: bluff, rocky, emma, circling, campsite, caught, noah, jackson, rummaging, raccoon
+
+Log Clusters:
+Cluster 2 (2 logs)
+Sample logs:
+- Sarah Mitchell: Spotted a red fox near Pine Ridge Trail at sunrise.
+- Alex Chen: Noted a black bear wandering along Riverbend Valley.
+Cluster 4 (1 logs)
+Sample logs:
+- James Patel: Observed a group of deer grazing in the North Lake Clearing.
+Cluster 0 (1 logs)
+Sample logs:
+- Lisa Gomez: Saw a great horned owl perched in Oakwood Forest.
+Cluster 3 (1 logs)
+Sample logs:
+- Emma Brooks: Watched a bald eagle circling above Rocky Bluff Point.
+Cluster 1 (1 logs)
+Sample logs:
+- Noah Jackson: Caught a raccoon rummaging near Campsite .

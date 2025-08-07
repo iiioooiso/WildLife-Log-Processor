@@ -1,0 +1,3 @@
+=== CRITICAL EVENT ALERTS ===
+
+No critical events detected.
