@@ -2,7 +2,9 @@
 
 A modern Flask-based web application for uploading and processing wildlife log files. This tool helps you analyze, summarize, and report wildlife activity from raw text logs with ease.
 
-<img width="1670" height="979" alt="image" src="https://github.com/user-attachments/assets/5ac3009b-3138-4cc3-9eca-605936f63eb4" />
+<img width="1670" height="969" alt="image" src="https://github.com/user-attachments/assets/5ac3009b-3138-4cc3-9eca-605936f63eb4" />
+<img width="1684" height="964" alt="image" src="https://github.com/user-attachments/assets/371dc7c4-0efc-4402-bb6e-a17f2b45028c" />
+
 
 
 ---
