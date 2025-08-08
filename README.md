@@ -31,7 +31,7 @@ A modern Flask-based web application for uploading and processing wildlife log f
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/wildlife-log-processor.git
+git clone https://github.com/iiioooiso/wildlife-log-processor.git
 cd wildlife-log-processor
 
 # Create a virtual environment (recommended)
