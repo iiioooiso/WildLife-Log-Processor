@@ -38,17 +38,6 @@ from markdown import markdown
 from bs4 import BeautifulSoup
 from openai import OpenAI
 
-import os
-import time
-from markdown import markdown
-from bs4 import BeautifulSoup
-from openai import OpenAI
-os.makedirs('static/outputs', exist_ok=True)
-
-
-from markdown import markdown
-from bs4 import BeautifulSoup
-
 #LLM (Transformer-based) : Uses markdown formatting, requires API key
 def get_log_summary_from_ai(log_file, max_retries=3, retry_delay=5):
     """Summarize markdown logs using an AI model via API and return HTML-rendered content."""
@@ -455,13 +444,89 @@ def clean_and_detect_anomalies(log_file):
         return error_msg
 
 
+def agentic_log_analysis(log_file, user_query="Review the latest logs, check for critical events, and outline the general day stats."):
+    """
+    Deploys a Langchain agent connected to local tools and a vectorized log index.
+    The agent dynamically decides which tool to run based on the user's query.
+    """
+    try:
+        from langchain.agents import initialize_agent, Tool, AgentType
+        from langchain_openai import ChatOpenAI
+        from langchain_community.document_loaders import TextLoader
+        from langchain.indexes import VectorstoreIndexCreator
+        from langchain_community.embeddings import HuggingFaceEmbeddings
+        from markdown import markdown
+    except ImportError:
+        return "<p>Missing Langchain dependencies. Try: pip install langchain langchain-openai langchain-community sentence-transformers</p>"
+
+    try:
+        api_key = "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"
+        os.environ["OPENAI_API_KEY"] = api_key
+        
+        # Link OpenRouter to Langchain LLM
+        llm = ChatOpenAI(
+            api_key=api_key, 
+            base_url="https://openrouter.ai/api/v1", 
+            model="deepseek/deepseek-chat:free",
+            temperature=0
+        )
+        
+        # We index the text here to enable the agent to do semantic lookups
+        loader = TextLoader(log_file, encoding='utf-8')
+        embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+        index = VectorstoreIndexCreator(embedding=embeddings).from_loaders([loader])
+        
+        def search_log_index(query):
+            return index.query(query, llm=llm)
+
+        tools = [
+            Tool(
+                name="Search Log Index",
+                func=search_log_index,
+                description="Queries the vector store of indexed logs. Best for finding specific entities, timestamps, or raw text fragments."
+            ),
+            Tool(
+                name="Track Critical Events",
+                func=lambda _: detect_events(log_file),
+                description="Runs a rule-based scan to return specific alerts for emergencies like poaching or injuries in the logs."
+            ),
+            Tool(
+                name="Generate Daily Report Stats",
+                func=lambda _: generate_daily_report(log_file),
+                description="Generates top keywords and aggregates the file statistics."
+            )
+        ]
+        
+        agent = initialize_agent(
+            tools=tools,
+            llm=llm,
+            agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
+            verbose=False,
+            handle_parsing_errors=True
+        )
+        
+        response = agent.run(user_query)
+        html_response = markdown(response)
+        
+        with open('static/outputs/agentic_analysis.txt', 'w', encoding='utf-8') as f:
+            f.write(response)
+            
+        return html_response
+        
+    except Exception as e:
+        error_msg = f"Agent workflow failed: {str(e)}"
+        with open('static/outputs/agentic_analysis.txt', 'w', encoding='utf-8') as f:
+            f.write(error_msg)
+        return f"<p>{error_msg}</p>"
+
 def full_pipeline(log_file='log.txt'):
     results = {}
     results['daily_report'] = generate_daily_report(log_file)
     results['event_detection'] = detect_events(log_file)
     results['sentiment_analysis'] = analyze_sentiment(log_file)
     results['pattern_detection'] = detect_patterns(log_file)
-    results['translation'] = translate_logs(log_file)  # Removed 'sw' parameter
+    results['translation'] = translate_logs(log_file)
     results['anomaly_detection'] = clean_and_detect_anomalies(log_file)
     results['log_summary'] = get_log_summary_from_ai(log_file)
+    results['agentic_analysis'] = agentic_log_analysis(log_file)
     return results
