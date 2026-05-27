@@ -1,0 +1,94 @@
+/* Consolidated styles extracted from the original template */
+:root {
+    --primary: #4CAF50;
+    --secondary: #8BC34A;
+    --dark: #1a2e1a;
+    --light: #f8f9fa;
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-highlight: rgba(255, 255, 255, 0.2);
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: url('/static/bg.png') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.main-container { display:flex; flex-direction:column; gap:25px; width:100%; max-width:1200px; padding:20px }
+.container { background: rgba(0,0,0,0.1); backdrop-filter: blur(10px); border-radius:20px; padding:40px }
+.link-container { display:grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap:20px; width:100% }
+.function-box { background:var(--glass); backdrop-filter:blur(8px); cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:180px; padding:25px; border-radius:18px; border:1px solid var(--glass-border); position:relative; overflow:hidden }
+.function-box:hover { transform:translateY(-5px) scale(1.02); background: rgba(0,0,0,0.25); }
+.function-box h2 { font-size:1.6em; margin-bottom:12px; z-index:2; background: linear-gradient(45deg,var(--primary),var(--secondary)); -webkit-background-clip:text; background-clip:text }
+.function-box p { font-size:0.95em; opacity:0.9; margin-top:0; z-index:2; color: rgba(255,255,255,0.85) }
+.output-container { display:none; margin-top:20px; padding:18px; background: rgba(0,0,0,0.25); border-radius:12px; text-align:left; max-height:300px; overflow-y:auto; width:100%; border-left:3px solid var(--primary); backdrop-filter: blur(5px) }
+
+.output-container { position:relative }
+
+/* Top-right download icon inside the output container */
+.download-icon { position:absolute; top:10px; right:10px; width:36px; height:36px; display:inline-flex; align-items:center; justify-content:center; background: rgba(0,0,0,0.35); color:#fff; border-radius:8px; text-decoration:none; border:1px solid rgba(255,255,255,0.06) }
+.download-icon i { font-size:16px }
+
+/* Ensure output content has padding to avoid overlapping the icon */
+.output-container .content-inner { padding-top:8px }
+
+/* Footer */
+.site-footer { width:100%; max-width:1200px; margin:24px auto 8px; color:rgba(255,255,255,0.8); font-size:0.9rem }
+.site-footer .footer-inner { background: rgba(0,0,0,0.35); padding:10px 16px; border-radius:12px; display:inline-flex; gap:8px; align-items:center }
+.site-footer .heart { color:#ff6b6b; margin:0 4px }
+.site-footer .sep { opacity:0.6 }
+.loading { display:none; margin-top:10px }
+
+/* Spinner */
+.spinner { width:32px; height:32px; border-radius:50%; border:4px solid rgba(255,255,255,0.15); border-top-color: #ffffff; animation: spin 1s linear infinite; margin:8px auto }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.function-box .meta { position:absolute; top:12px; right:12px; font-size:0.85rem; color: rgba(255,255,255,0.7) }
+
+.function-box.disabled { opacity:0.48; transform:none; pointer-events:none }
+
+.badge { display:inline-block; background: rgba(255,255,255,0.06); color: #fff; padding:6px 10px; border-radius:999px; margin-right:8px; font-size:0.8rem; border:1px solid rgba(255,255,255,0.06) }
+
+.demo-btn { background: linear-gradient(90deg,#2b8a3e,#4CAF50); padding:10px 16px; border-radius:10px; margin-left:8px }
+.demo-btn { position: relative; padding-right:44px }
+.demo-btn-wrap { display:inline-block; position:relative }
+.demo-download-icon { position:absolute; right:6px; top:50%; transform:translateY(-50%); width:34px; height:34px; display:inline-flex; align-items:center; justify-content:center; background: rgba(0,0,0,0.28); color:#fff; border-radius:8px; border:1px solid rgba(255,255,255,0.06); text-decoration:none }
+.demo-download-icon i { font-size:14px }
+
+.error-message { color: #ffdddd; background: rgba(255,0,0,0.06); padding:10px; border-radius:8px }
+
+.download-btn { display:inline-flex; align-items:center; justify-content:center; padding:10px 20px; margin-top:15px; border-radius:8px; background: linear-gradient(135deg,var(--primary),var(--secondary)); color:white; font-weight:600; text-decoration:none }
+
+/* Upload container */
+.upload-container { background:var(--glass); backdrop-filter: blur(12px); border-radius:20px; padding:30px; box-shadow: 0 8px 32px rgba(0,0,0,0.3); border:1px solid var(--glass-border); max-width:500px; margin:0 auto }
+input[type=file] { margin:20px 0; padding:15px; border:2px dashed rgba(255,255,255,0.3); border-radius:10px; background: rgba(0,0,0,0.2); color:white; width:80%; max-width:400px }
+button { padding:12px 25px; margin:10px; border:none; border-radius:10px; background: linear-gradient(45deg,#4CAF50,#8BC34A); color:white; cursor:pointer }
+.download-btn { display:inline-flex; align-items:center; justify-content:center; padding:10px 20px; margin-top:15px; border-radius:8px; background: linear-gradient(135deg,var(--primary),var(--secondary)); color:white; font-weight:600 }
+
+/* Navbar */
+.navbar { backdrop-filter: blur(12px); background: linear-gradient(135deg, rgba(34,139,34,0.28), rgba(0,128,128,0.22)); border-radius:1rem; margin:1.2rem auto; max-width:1200px; padding:0.8rem 3rem; display:flex; align-items:center; justify-content:space-between; box-shadow: 0 6px 24px rgba(0,0,0,0.25) }
+.navbar .title { font-size:1.6rem; font-weight:700; display:flex; align-items:center; gap:0.6rem; color:#ffffff; text-shadow: 0 1px 0 rgba(0,0,0,0.5) }
+.tagline { font-size:0.95rem; color: rgba(255,255,255,0.85); margin-top:4px }
+
+.box-badges { position:absolute; left:16px; top:12px; display:flex; gap:8px }
+.box-badges .badge { background: rgba(255,255,255,0.06); color:#fff; padding:6px 10px; border-radius:999px; font-size:0.75rem; border:1px solid rgba(255,255,255,0.06) }
+
+/* Small responsive tweaks */
+@media (max-width:600px){ .navbar{flex-direction:column;align-items:flex-start} }
+
+/* Misc */
+.notification{position:fixed;top:16px;right:16px;background:#4CAF50;padding:10px 14px;border-radius:8px;display:none}
+.notification.show{display:block}
+
+/* preserve small helper classes used by template */
+.file-name{margin-top:8px;color:rgba(255,255,255,0.9)}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Wildlife Log Processor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ request.url_for('static', path='css/style.css') }}">
+</head>
+
+<body>
+    <div class="navbar">
+            <div class="left">
+            <div class="title">
+                <i class="fas fa-leaf"></i> Wildlife Log Processor
+            </div>
+            <div class="tagline">Nature meets data – process, track &amp; analyze logs effortlessly</div>
+        </div>
+
+    </div>
+
+    <div class="notification" id="notification">
+        <div id="notification-message"></div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="upload-container">
+            <h1><i class="fas fa-paw"></i> Input a File</h1>
+            <p>Upload your wildlife log file to start processing</p>
+            <form id="upload-form" action="/upload" method="post" enctype="multipart/form-data">
+                <div class="file-upload">
+                    <label for="file-input" class="file-upload-label">
+                        <i class="fas fa-cloud-upload-alt"></i><br>
+                        Choose Log File (.txt)
+                    </label>
+                    <input id="file-input" type="file" name="file" accept=".txt">
+                    <div class="file-name" id="file-name">No file chosen</div>
+                </div>
+
+                <button type="submit" id="process-btn">
+                    <span id="btn-text">Process File</span>
+                    <span id="btn-spinner" style="display:none;">
+                        <i class="fas fa-spinner fa-spin"></i> Processing...
+                    </span>
+                </button>
+                <div class="demo-btn-wrap">
+                  <button type="button" id="demo-btn" class="demo-btn">
+                      <i class="fas fa-file-alt"></i>
+                      <span class="demo-btn-text">Use Demo Log</span>
+                  </button>
+                  <a href="/download_demo" class="demo-download-icon" title="Download demo log" download onclick="event.stopPropagation(); event.preventDefault(); window.location.href=this.href;">
+                      <i class="fas fa-arrow-down"></i>
+                  </a>
+                </div>
+            </form>
+        </div>
+
+        <div class="link-container">
+            <!-- Boxes for functions -->
+            <div class="function-box" onclick="runFunction('daily_report')">
+                <div class="function-icon"><i class="fas fa-file-alt"></i></div>
+                <h2>Daily Report</h2>
+                <p>Generate comprehensive daily activity summary</p>
+                <div class="box-badges"><span class="badge">TF‑IDF</span><span class="badge">Summary</span></div>
+                <div class="loading" id="daily_report_loading"></div>
+                <div class="output-container" id="daily_report_output"></div>
+            </div>
+
+            <div class="function-box" onclick="runFunction('log_summary')">
+                <div class="function-icon"><i class="fas fa-terminal"></i></div>
+                <h2>Log Summary</h2>
+                <p>Extractive summary (TF‑IDF + MiniLM embeddings) — runs locally</p>
+                <div class="box-badges"><span class="badge">TF‑IDF</span><span class="badge">MiniLM (optional)</span></div>
+                <div class="loading" id="log_summary_loading"></div>
+                <div class="output-container" id="log_summary_output"></div>
+            </div>
+
+            <div class="function-box" onclick="runFunction('event_detection')">
+                <div class="function-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                <h2>Event Detection</h2>
+                <p>Identify critical wildlife events</p>
+                <div class="box-badges"><span class="badge">Keyword</span><span class="badge">Poaching</span><span class="badge">Injury</span></div>
+                <div class="loading" id="event_detection_loading"></div>
+                <div class="output-container" id="event_detection_output"></div>
+            </div>
+
+            <div class="function-box" onclick="runFunction('sentiment_analysis')">
+                <div class="function-icon"><i class="fas fa-smile"></i></div>
+                <h2>Sentiment Analysis</h2>
+                <p>Analyze emotional tone of logs</p>
+                <div class="box-badges"><span class="badge">Sentiment</span><span class="badge">Emotion</span></div>
+                <div class="loading" id="sentiment_analysis_loading"></div>
+                <div class="output-container" id="sentiment_analysis_output"></div>
+            </div>
+
+            <div class="function-box" onclick="runFunction('pattern_detection')">
+                <div class="function-icon"><i class="fas fa-project-diagram"></i></div>
+                <h2>Pattern Detection</h2>
+                <p>Find recurring patterns in data</p>
+                <div class="box-badges"><span class="badge">LDA</span><span class="badge">Clustering</span></div>
+                <div class="loading" id="pattern_detection_loading"></div>
+                <div class="output-container" id="pattern_detection_output"></div>
+            </div>
+
+            <div class="function-box" onclick="runFunction('translation')">
+                <div class="function-icon"><i class="fas fa-language"></i></div>
+                <h2>Translation</h2>
+                <p>Translate logs to Hindi</p>
+                <div class="box-badges"><span class="badge">Marian</span><span class="badge">Translation</span></div>
+                <div class="loading" id="translation_loading"></div>
+                <div class="output-container" id="translation_output"></div>
+            </div>
+
+            <div class="function-box" onclick="runFunction('anomaly_detection')">
+                <div class="function-icon"><i class="fas fa-search"></i></div>
+                <h2>Anomaly Detection</h2>
+                <p>Clean logs and detect anomalies</p>
+                <div class="box-badges"><span class="badge">IsolationForest</span><span class="badge">Cleanup</span></div>
+                <div class="loading" id="anomaly_detection_loading"></div>
+                <div class="output-container" id="anomaly_detection_output"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="{{ request.url_for('static', path='js/app.js') }}"></script>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span>© 2026 Wildlife Log Processor</span>
+            <span class="sep">•</span>
+            <span>Made with <span class="heart">❤</span> for conservation</span>
+        </div>
+    </footer>
+</body>
+
+</html>

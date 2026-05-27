@@ -1,0 +1,14 @@
+fastapi>=0.95.0
+uvicorn[standard]>=0.18.0
+transformers>=4.30.0
+torch>=1.12.0
+scikit-learn>=1.0.0
+nltk>=3.7
+beautifulsoup4>=4.11.1
+markdown>=3.4.1
+openai>=1.0.0
+langchain>=0.0.300
+langchain-openai>=0.0.4
+langchain-community>=0.0.19
+sentencepiece>=0.1.97
+python-multipart>=0.0.6

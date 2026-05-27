@@ -1,9 +1,0 @@
-=== LOG CLEANUP & ANOMALY DETECTION ===
-
-Total logs: 6
-Unique logs: 6
-Duplicate logs: 0
-Anomalies detected: 1
-
-Anomalous logs:
-- James Patel: Observed a group of deer grazing in the North Lake Clearing.

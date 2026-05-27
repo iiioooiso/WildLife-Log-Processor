@@ -1,26 +1,30 @@
 === PATTERN DETECTION ===
 
 Topic Modeling Results:
-Topic 0: lake, lisa, gomez, forest, great, horned, oakwood, saw, perched, owl
-Topic 1: chen, riverbend, black, campsite, jackson, caught, rummaging, noah, raccoon, near
-Topic 2: sunrise, alex, black, chen, along, bear, noted, riverbend, valley, wandering
-Topic 3: chen, riverbend, black, campsite, jackson, caught, rummaging, noah, raccoon, near
-Topic 4: bluff, rocky, emma, circling, campsite, caught, noah, jackson, rummaging, raccoon
+Topic 0: in, group, 15, 06, grazing, deer, james, patel, of, the
+Topic 1: what, jackson, 22, campsite, caught, 13, noah, rummaging, raccoon, near
+Topic 2: possible, noted, along, 20, black, wandering, chen, bear, 08, alex
+Topic 3: at, 42, sarah, fox, mitchell, red, spotted, sunrise, 05, near
+Topic 4: point, brooks, emma, circling, eagle, bluff, watched, 2026, 28, 05
 
 Log Clusters:
-Cluster 2 (2 logs)
+Cluster 1 (2 logs)
 Sample logs:
-- Sarah Mitchell: Spotted a red fox near Pine Ridge Trail at sunrise.
-- Alex Chen: Noted a black bear wandering along Riverbend Valley.
+- 2026-05-28 05:42 - Sarah Mitchell: Spotted a red fox near Pine Ridge Trail at sunrise.
+- 2026-05-28 03:55 - Anonymous: Heard what sounded like a gunshot near Pine Ridge Trail.
+Cluster 2 (3 logs)
+Sample logs:
+- 2026-05-28 06:15 - James Patel: Observed a group of deer grazing in the North Lake Clearing.
+- 2026-05-28 07:02 - Lisa Gomez: Saw a great horned owl perched in Oakwood Forest.
+- 2026-05-28 11:40 - Volunteer: Observed an injured fawn near North Lake Clearing; appears to be limping and bleeding.
+Cluster 0 (2 logs)
+Sample logs:
+- 2026-05-28 08:20 - Alex Chen: Noted a black bear wandering along Riverbend Valley.
+- 2026-05-28 08:21 - Alex Chen: Follow-up: bear appeared agitated and limping slightly (possible injury).
+Cluster 3 (2 logs)
+Sample logs:
+- 2026-05-28 09:05 - Emma Brooks: Watched a bald eagle circling above Rocky Bluff Point.
+- 2026-05-28 22:13 - Noah Jackson: Caught a raccoon rummaging near Campsite.
 Cluster 4 (1 logs)
 Sample logs:
-- James Patel: Observed a group of deer grazing in the North Lake Clearing.
-Cluster 0 (1 logs)
-Sample logs:
-- Lisa Gomez: Saw a great horned owl perched in Oakwood Forest.
-Cluster 3 (1 logs)
-Sample logs:
-- Emma Brooks: Watched a bald eagle circling above Rocky Bluff Point.
-Cluster 1 (1 logs)
-Sample logs:
-- Noah Jackson: Caught a raccoon rummaging near Campsite .
+- 2026-05-28 04:12 - Ranger Team: Found tire tracks and an overturned trap on Riverbend Valley trail.
